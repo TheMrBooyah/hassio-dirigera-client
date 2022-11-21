@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start Dirigera Client Service
+# ==============================================================================
+
+# Get configuration
+HOSTNAME=$(bashio::config 'dirigera-host')
+MQTT_HOST=$(bashio::config 'mqtt-host')
+MQTT_PORT=$(bashio::config 'port')
+MQTT_USERNAME=$(bashio::config 'username')
+MQTT_PASSWORD=$(bashio::config 'password')
+
+# Run Client
+exec java -jar /dirigera/dirigera-client-mqtt.jar --dirigera.hostname=${HOSTNAME} --dirigera.mqtt.hostname=${MQTT_HOST} --dirigera.mqtt.port=${MQTT_PORT} --dirigera.mqtt.username=${MQTT_USERNAME} --dirigera.mqtt.password=${MQTT_PASSWORD}

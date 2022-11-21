@@ -1,0 +1,33 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - template: .build/variables.yaml
+
+stages:
+  - stage: Build
+    jobs:
+      - job: build
+        strategy:
+          matrix:
+            amd64:
+              architecture: amd64
+            i386:
+              architecture: i386
+            aarch64:
+              architecture: aarch64
+            armv7:
+              architecture: armv7
+            armhf:
+              architecture: armhf
+        steps:
+          - template: .build/build-container.yaml
+
+  - stage: Deploy
+    jobs:
+      - job: update_repository
+        steps:
+          - template: .build/push-to-repository.yaml
