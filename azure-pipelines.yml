@@ -15,7 +15,14 @@ stages:
           matrix:
             amd64:
               architecture: amd64
-
+            i386:
+              architecture: i386
+            aarch64:
+              architecture: aarch64
+            armv7:
+              architecture: armv7
+            armhf:
+              architecture: armhf
         steps:
           - template: .build/build-container.yaml
 
