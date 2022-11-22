@@ -3,7 +3,9 @@ FROM $BUILD_FROM
 
 ARG BUILD_ARCH
 
-RUN apt install openjdk-17-jre \
+RUN apt update \
+    && apt-cache search openjdk | grep 17 \
+    && apt install openjdk-17-jre \
     && java --version
 
 COPY ./dirigera-client-mqtt/target/dirigera-client-mqtt.jar /dirigera
