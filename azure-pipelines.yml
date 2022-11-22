@@ -15,15 +15,14 @@ stages:
           matrix:
             amd64:
               architecture: amd64
-#            No package exist for the OpenJDK in the package manager of the used base image TODO: Find workaround
-#            i386:
-#              architecture: i386
+            i386:
+              architecture: i386
             aarch64:
               architecture: aarch64
-#            armv7:
-#              architecture: armv7
-#            armhf:
-#              architecture: armhf
+            armv7:
+              architecture: armv7
+            armhf:
+              architecture: armhf
         steps:
           - template: .build/build-container.yaml
 
