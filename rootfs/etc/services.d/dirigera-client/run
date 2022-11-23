@@ -3,12 +3,15 @@
 # Start Dirigera Client Service
 # ==============================================================================
 
+ls -la /data
+cat /data/options.json
+
 # Get configuration
 HOSTNAME=$(bashio::config 'dirigera-host')
 MQTT_HOST=$(bashio::config 'mqtt-host')
 MQTT_PORT=$(bashio::config 'port')
-if bashio::config.has_value "username"; then MQTT_USERNAME=$(bashio::config 'username'); else MQTT_USERNAME=""; fi
-if bashio::config.has_value "password"; then MQTT_PASSWORD=$(bashio::config 'password'); else MQTT_PASSWORD=""; fi
+MQTT_USERNAME=$(bashio::config 'username' '')
+MQTT_PASSWORD=$(bashio::config 'password' '')
 TOKEN=$(bashio::config 'token')
 
 echo ${TOKEN} > /dirigera/dirigera_access_token
