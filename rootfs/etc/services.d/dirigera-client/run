@@ -7,8 +7,8 @@ ls -la /data
 cat /data/options.json
 
 # Get configuration
-HOSTNAME=$(bashio::config 'dirigera-host')
-MQTT_HOST=$(bashio::config 'mqtt-host')
+HOSTNAME=$(bashio::config 'dirigera_host')
+MQTT_HOST=$(bashio::config 'mqtt_host')
 MQTT_PORT=$(bashio::config 'port')
 MQTT_USERNAME=$(bashio::config 'username' '')
 MQTT_PASSWORD=$(bashio::config 'password' '')
