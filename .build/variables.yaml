@@ -8,3 +8,5 @@ variables:
     value: 'dirigera-client'
   - name: repository
     value: 'TheMrBooyah/hassio-repository.git'
+  - name: dirigeraClientRepository
+    value: 'dvdgeisler/DirigeraClient.git'

@@ -5,9 +5,15 @@
 # builderVersion: version of the builder image
 
 steps:
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        git clone https://x-access-token:${gitRepositoryToken}@github.com/$(dirigeraClientRepository)
+
   - task: Maven@4
     inputs:
-      mavenPomFile: 'pom.xml'
+      mavenPomFile: 'DirigeraClient/pom.xml'
       publishJUnitResults: true
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion'

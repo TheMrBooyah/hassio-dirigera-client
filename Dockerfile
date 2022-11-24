@@ -8,5 +8,5 @@ RUN apt update -y \
     && java --version \
     && mkdir "dirigera"
 
-COPY ./dirigera-client-mqtt/target/dirigera-client-mqtt.jar /dirigera
+COPY ./DirigeraClient/dirigera-client-mqtt/target/dirigera-client-mqtt.jar /dirigera
 COPY ./rootfs /
