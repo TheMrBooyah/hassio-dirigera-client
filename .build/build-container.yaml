@@ -10,6 +10,7 @@ steps:
       targetType: 'inline'
       script: |
         git clone https://x-access-token:${gitRepositoryToken}@github.com/$(dirigeraClientRepository)
+      displayName: 'Checkout $(dirigeraClientRepository) for building'
 
   - task: Maven@4
     inputs:
@@ -34,11 +35,6 @@ steps:
       targetType: 'inline'
       script: sudo docker pull homeassistant/amd64-builder:$(builderVersion)
     displayName: 'Install Builder for $(architecture)'
-
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: ls -la $(Build.SourcesDirectory)
 
   - task: Bash@3
     inputs:
