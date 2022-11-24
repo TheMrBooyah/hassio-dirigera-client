@@ -31,9 +31,14 @@ steps:
 
   - task: Bash@3
     inputs:
-      targetTYpe: 'inline'
+      targetType: 'inline'
       script: sudo docker pull homeassistant/amd64-builder:$(builderVersion)
     displayName: 'Install Builder for $(architecture)'
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: ls -la $(Build.SourcesDirectory)
 
   - task: Bash@3
     inputs:
