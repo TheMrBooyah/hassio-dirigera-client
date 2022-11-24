@@ -34,3 +34,6 @@ build/
 
 ### Homeassistant testing ###
 data/
+
+### Image building testing ###
+DirigeraClient/
