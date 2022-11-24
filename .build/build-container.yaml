@@ -1,0 +1,53 @@
+#Expects the following varable's to be available:
+# dockerUsername: Dockerhub username used to push image
+# dockerPassword: Dockerhub password for given username
+# architecture: architecture of the target image. Can be amd64, i386, armhf, armv7, aarch64
+# builderVersion: version of the builder image
+
+steps:
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        git clone https://x-access-token:${gitRepositoryToken}@github.com/$(dirigeraClientRepository)
+      displayName: 'Checkout $(dirigeraClientRepository) for building'
+
+  - task: Maven@4
+    inputs:
+      mavenPomFile: 'DirigeraClient/pom.xml'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.17'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: sudo docker login -u $(dockerUsername) -p $(dockerPassword)
+    displayName: 'Docker hub login for $(architecture)'
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: sudo docker pull homeassistant/amd64-builder:$(builderVersion)
+    displayName: 'Install Builder for $(architecture)'
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        sudo docker run --rm --privileged \
+          -v ~/.docker:/root/.docker \
+          -v /$(Build.SourcesDirectory):/data \
+          -v /run/docker.sock:/run/docker.sock:rw \
+          homeassistant/amd64-builder:$(builderVersion) \
+          -t /data \
+          --$(architecture) \
+          --docker-user $(dockerUsername) \
+          --docker-password $(dockerPassword) \
+          --docker-hub-check
+    displayName: 'Build image for $(architecture)'

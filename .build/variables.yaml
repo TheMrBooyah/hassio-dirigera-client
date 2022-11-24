@@ -1,0 +1,12 @@
+variables:
+  # docker group contains dockerUsername and dockerPassword
+  - group: Docker
+  - group: git
+  - name: builderVersion
+    value: 'latest'
+  - name: addonName
+    value: 'dirigera-client'
+  - name: repository
+    value: 'TheMrBooyah/hassio-repository.git'
+  - name: dirigeraClientRepository
+    value: 'dvdgeisler/DirigeraClient.git'
