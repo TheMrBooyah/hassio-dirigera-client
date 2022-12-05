@@ -9,6 +9,7 @@ RUN apt update -y \
     && apt install openjdk-17-jre -y \
     && java --version \
     && mkdir "dirigera" \
-    && curl -s -L -o \dirigera\dirigera-client-mqtt.jar "https://github.com/dvdgeisler/DirigeraClient/releases/download/v${DIRIGERA_VERSION}/dirigera-client-mqtt.jar"
+    && curl -s -L -o dirigera-client-mqtt.jar "https://github.com/dvdgeisler/DirigeraClient/releases/download/v${DIRIGERA_VERSION}/dirigera-client-mqtt.jar" \
+    && mv dirigera-client-mqtt.jar /dirigera/dirigera-client-mqtt.jar
 
 COPY ./rootfs /
