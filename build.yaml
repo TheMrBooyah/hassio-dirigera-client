@@ -4,3 +4,5 @@ build_from:
   armhf: "ghcr.io/home-assistant/armhf-base-debian:latest"
   armv7: "ghcr.io/home-assistant/armv7-base-debian:latest"
   i386: "ghcr.io/home-assistant/i386-base-debian:latest"
+args:
+  DIRIGERA_VERSION: 0.1.0
