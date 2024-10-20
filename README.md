@@ -1,3 +1,7 @@
+# ARCHIVED
+This repository has been archived due to upstream project seemingly being abandoned.
+Besides IKEA has enabled MATTER support for the Dirigera hub, making this add-on seemingly obsolete.
+
 # Home Assistant Add-on: DIRIGERA API Client
 
 ![Supports aarch64 Architecture][aarch64-shield]
